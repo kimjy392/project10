@@ -1,0 +1,9 @@
+{% extends 'movies/base.html' %}
+{% block body %}
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <hr>
+    <input type="submit" value="회원가입">
+    </form>
+{% endblock %}
