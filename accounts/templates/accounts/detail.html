@@ -1,8 +1,13 @@
 {% extends 'movies/base.html' %}
-
 {% block body %}
     <h2>{{ user.username }}</h2>
-    <a href="{% url 'accounts:following' user.id %}">좋아연</a>
+    <a href="{% url 'accounts:following' user.id %}">
+    {% if request.user in user.followers.all %}
+    좋아연 취소
+    {% else %}
+    좋아연
+    {% endif %}
+    </a>
     <h4>리뷰 목록</h4>
     {% for review in user.review_set.all %}
         <h4>{{ review.content }}</h4>
@@ -14,4 +19,5 @@
     <p>{{user.followings.count}}</p>  
     <h3>추천영화</h3>
     <p>이따가 조지자</p>
+<a href="{% url 'accounts:index' %}"><button class="btn btn-primary"> 돌아가기</button></a>
 {% endblock %}

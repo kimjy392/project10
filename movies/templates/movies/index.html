@@ -4,7 +4,7 @@
     {% for movie in movies %}
     <h2>{{ movie.title }}</h2>
     <a href="{% url 'movies:detail' movie.pk %}">
-        <img src="{{ movie.poster_url }}" alt="{{ movie.title }}">
+        <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" width="300" height="300">
     </a>
     {% endfor %}
 {% endblock %}
