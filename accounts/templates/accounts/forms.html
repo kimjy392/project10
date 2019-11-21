@@ -1,9 +1,12 @@
 {% extends 'movies/base.html' %}
 {% block body %}
-    <form action="" method="post">
+{% load bootstrap4 %}
+<form action="" method="post" class="form">
     {% csrf_token %}
-    {{ form }}
-    <hr>
-    <input type="submit" value="회원가입">
-    </form>
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    {% endbuttons %}
+</form>
+<a href="{% url 'accounts:index' %}"><button class="btn btn-primary"> 돌아가기</button></a>
 {% endblock %}
