@@ -34,7 +34,7 @@
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
+          <a class="nav-link" href="{% url 'accounts:detail' user.pk %}">{{ request.user.username }}</a>
         </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'accounts:signout' %}">로그아웃</a>
