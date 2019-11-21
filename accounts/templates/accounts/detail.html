@@ -1,6 +1,8 @@
 {% extends 'movies/base.html' %}
 {% block body %}
     <h2>{{ user.username }}</h2>
+    <hr>
+    {% if request.user != user %}
     <a href="{% url 'accounts:following' user.id %}">
     {% if request.user in user.followers.all %}
     좋아연 취소
@@ -8,16 +10,28 @@
     좋아연
     {% endif %}
     </a>
+    {% endif %}
+    <p>팔로워 수: {{user.followers.count}}</p>
+    <p>팔로잉 수: {{user.followings.count}}</p>  
+    <hr>
     <h4>리뷰 목록</h4>
+    {% if user.review_set.exists %}
     {% for review in user.review_set.all %}
-        <h4>{{ review.content }}</h4>
+        <hr>
+        <h4>{{ review.movie.title }}</h4>
+        <p>{{ review.content }}</p>
         <p>{{ review.score }}</p>
+        <hr>
     {% endfor %}
-    <h3>팔로워 수</h3>
-    <p>{{user.followers.count}}</p>
-    <h3>팔로잉 수</h3>
-    <p>{{user.followings.count}}</p>  
+    {% else %}
+    <p>리뷰가 없네요 ㅠ</p>
+    <hr>
+    {% endif %}
+    
     <h3>추천영화</h3>
-    <p>이따가 조지자</p>
-<a href="{% url 'accounts:index' %}"><button class="btn btn-primary"> 돌아가기</button></a>
+    <a href="{% url 'movies:detail' recommand.id %}">
+        <img src="{{ recommand.poster_url }}" alt="{{ recommand.title }}" width="300" height="300">
+    </a>
+    <hr>
+    <a href="{% url 'accounts:index' %}"><button class="btn btn-primary"> 돌아가기</button></a>
 {% endblock %}

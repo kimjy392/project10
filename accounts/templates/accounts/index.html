@@ -1,9 +1,15 @@
 {% extends 'movies/base.html' %}
 
 {% block body %}
+    <h2>회원 목록</h2>
+    <p>회원들이 좋아하는 영화를 찾아보세요~~</p>
+    <hr>
     {% for user in users %}
+    <li>
     <a href="{% url 'accounts:detail' user.id %}">
-        <h2>{{ user.username }}</h2>
-    </a>    
+        {{ user.username }}
+    </a>
+    </li>    
     {% endfor %}
+
 {% endblock %}

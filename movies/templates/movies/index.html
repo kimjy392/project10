@@ -1,10 +1,25 @@
 {% extends 'movies/base.html' %}
-
+{% block css %}
+ a:hover {
+     color: black
+     
+ },
+ a:link {
+     color: black
+ }
+{% endblock %}
 {% block body %}
-    {% for movie in movies %}
-    <h2>{{ movie.title }}</h2>
-    <a href="{% url 'movies:detail' movie.pk %}">
-        <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" width="300" height="300">
-    </a>
-    {% endfor %}
+    <div class="row">
+        {% for movie in movies %}
+        <a href="{% url 'movies:detail' movie.pk %}" style="text-decoration: none; color:black;">
+        <div class="card mx-auto my-3" style="width: 18rem;">
+            <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
+        <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        </a>
+  </div>
+</div>
+
+        {% endfor %}
+    </div>
 {% endblock %}
